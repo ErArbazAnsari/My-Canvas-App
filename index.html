@@ -1,53 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Canvas App</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS Paint Clone</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="bg-white dark:bg-gray-800 text-black dark:text-white">
-    <div class="container mx-auto py-5">
-        <h1 class="text-3xl font-bold mb-4 text-center">MS Paint Clone</h1>
-        <div class="flex flex-wrap justify-center space-x-2 mb-4">
-            <button id="pencil"
-                class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Pencil</button>
-            <button id="resetCanvas"
-                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reset</button>
-            <button id="downloadCanvas"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download</button>
-            <input type="file" id="uploadImage"
-                class="bg-gray-200 dark:bg-gray-700 text-black dark:text-white py-2 px-4 rounded">
-            <button id="toggleTheme"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Toggle Theme</button>
-            <label for="colorPicker"
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Color</label>
-            <input type="color" id="colorPicker" class="hidden">
-            <label for="brushSize"
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Brush
-                Size</label>
-            <input type="range" id="brushSize" min="1" max="10" value="1" class="w-24">
-            <label for="bgColorPicker"
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Canvas
-                Color</label>
-            <input type="color" id="bgColorPicker" class="hidden">
+    <body class="bg-white dark:bg-gray-800 text-black dark:text-white">
+        <div class="container mx-auto py-5">
+            <h1 class="text-3xl font-bold mb-4 text-center">My Canvas App</h1>
+            <div class="flex flex-wrap justify-center space-x-2 mb-4">
+                <button
+                    id="pencil"
+                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Pencil
+                </button>
+                <button
+                    id="resetCanvas"
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Reset
+                </button>
+                <button
+                    id="downloadCanvas"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Download
+                </button>
+                <input
+                    type="file"
+                    id="uploadImage"
+                    class="bg-gray-200 dark:bg-gray-700 text-black dark:text-white py-2 px-4 rounded"
+                />
+                <button
+                    id="toggleTheme"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Toggle Theme
+                </button>
+                <label
+                    for="colorPicker"
+                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                    >Color</label
+                >
+                <input type="color" id="colorPicker" class="hidden" />
+                <label
+                    for="brushSize"
+                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                    >Brush Size</label
+                >
+                <input
+                    type="range"
+                    id="brushSize"
+                    min="1"
+                    max="10"
+                    value="1"
+                    class="w-24"
+                />
+                <label
+                    for="bgColorPicker"
+                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                    >Canvas Color</label
+                >
+                <input type="color" id="bgColorPicker" class="hidden" />
+            </div>
+            <div class="flex flex-wrap justify-center space-x-2 mb-4">
+                <button
+                    id="drawLine"
+                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Line
+                </button>
+                <button
+                    id="drawRect"
+                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Rectangle
+                </button>
+                <button
+                    id="drawCircle"
+                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Circle
+                </button>
+            </div>
+            <div class="flex justify-center">
+                <canvas
+                    id="paintCanvas"
+                    class="border border-gray-400"
+                    width="800"
+                    height="600"
+                ></canvas>
+            </div>
         </div>
-        <div class="flex flex-wrap justify-center space-x-2 mb-4">
-            <button id="drawLine"
-                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Line</button>
-            <button id="drawRect"
-                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Rectangle</button>
-            <button id="drawCircle"
-                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Circle</button>
-        </div>
-        <div class="flex justify-center">
-            <canvas id="paintCanvas" class="border border-gray-400" width="800" height="600"></canvas>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-
+        <script src="script.js"></script>
+    </body>
 </html>
